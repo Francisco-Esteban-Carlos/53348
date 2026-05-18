@@ -1,0 +1,7 @@
+si falso entonces{
+imprimir("nunca entra");
+imprimir("45!!!");
+}
+sino{
+imprimir("entra");
+}
