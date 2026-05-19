@@ -1,0 +1,6 @@
+si falso entonces{
+imprimir("No entra");
+}
+sino{
+imprimir("Entra a la otra");
+}

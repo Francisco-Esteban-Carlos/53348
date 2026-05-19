@@ -1,11 +1,51 @@
 # Analizador Sintáctico
 
-Alumno: Francisco Esteban
-Legajo: 53348
-Comision: 2K1
+**Alumno:** Francisco Esteban  
+**Legajo:** 53348  
+**Comisión:** 2K1  
+
+---
+
 ## Descripción
-clona este repositorio: https://github.com/Francisco-Esteban-Carlos/53348.git 
-cambiar al directorio con el comando:  cd 53348/Proyecto
-ejecutar: code .
-En analizador.g4 apretar F5 para abrir árbol de sintaxis 
-Con el comando node index.js se ejecuta 
+
+Repositorio del trabajo práctico del analizador sintáctico realizado con **ANTLR4** y **NodeJS**.
+
+## Clonar repositorio
+
+```bash
+git clone https://github.com/Francisco-Esteban-Carlos/53348.git
+```
+
+## Abrir proyecto
+
+Ingresar a la carpeta:
+
+```bash
+cd 53348/Proyecto
+```
+
+Abrir Visual Studio Code:
+
+```bash
+code .
+```
+
+## Ejecutar el analizador
+
+```bash
+node index.js
+```
+
+## Visualizar árbol sintáctico
+
+1. Abrir `analizador.g4`
+2. Presionar `F5`
+
+---
+
+## Archivos de prueba
+
+- input_correcto_1.txt
+- input_correcto_2.txt
+- input_incorrecto_1.txt
+- input_incorrecto_2.txt
