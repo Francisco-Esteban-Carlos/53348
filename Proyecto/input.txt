@@ -1,7 +1,5 @@
-si falso entonces{
-imprimir("nunca entra");
-imprimir("45!!!");
-}
-sino{
-imprimir("entra");
+si verdadero entonces{
+imprimir("uno");
+imprimir("dos");
+imprimir("tres");
 }

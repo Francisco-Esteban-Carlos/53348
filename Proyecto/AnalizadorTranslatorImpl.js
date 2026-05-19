@@ -1,6 +1,5 @@
 import analizadorVisitor from "./generated/analizadorVisitor.js";
 
-
 class AnalizadorTranslatorImpl
 extends analizadorVisitor{
 
@@ -9,13 +8,10 @@ visitPrograma(ctx){
 
 return ctx
 .instruccion()
-.map(
-i=>this.visit(i)
-)
+.map(i=>this.visit(i))
 .join("\n");
 
 }
-
 
 
 visitDecision(ctx){
@@ -26,6 +22,9 @@ ctx.condicion()
 );
 
 
+// si NO hay sino
+if(!ctx.SINO()){
+
 let sentencias=
 ctx.sentencia()
 .map(
@@ -34,31 +33,60 @@ s=>this.visit(s)
 .join("\n");
 
 
-let codigo=
+return `
 
-
-`if(${condicion}){
-
-${sentencias}
-
-}`;
-
-
-if(ctx.SINO()){
-
-codigo+=
-
-`
-
-else{
+if(${condicion}){
 
 ${sentencias}
-
-}`;
 
 }
 
-return codigo;
+`;
+
+}
+
+
+// si HAY sino
+
+let mitad=
+Math.floor(
+ctx.sentencia().length/2
+);
+
+
+let sentenciasIf=
+ctx.sentencia()
+.slice(0,mitad)
+.map(
+s=>this.visit(s)
+)
+.join("\n");
+
+
+let sentenciasElse=
+ctx.sentencia()
+.slice(mitad)
+.map(
+s=>this.visit(s)
+)
+.join("\n");
+
+
+return `
+
+if(${condicion}){
+
+${sentenciasIf}
+
+}
+
+else{
+
+${sentenciasElse}
+
+}
+
+`;
 
 }
 
@@ -66,12 +94,17 @@ return codigo;
 
 visitCondicion(ctx){
 
-return
-ctx.VERDADERO()
-?
-"true"
-:
-"false";
+if(ctx.VERDADERO()){
+
+return "true";
+
+}
+
+if(ctx.FALSO()){
+
+return "false";
+
+}
 
 }
 
@@ -86,7 +119,6 @@ ctx.terminar()
 );
 
 }
-
 
 return ctx
 .salida()
@@ -106,9 +138,7 @@ this.visit(
 ctx.cadena()
 );
 
-
-return
-`console.log("${texto}");`;
+return `console.log("${texto}");`;
 
 }
 
@@ -133,7 +163,6 @@ return ctx.getText();
 }
 
 
-
 visitTerminar(ctx){
 
 return "return;";
@@ -142,6 +171,4 @@ return "return;";
 
 }
 
-
-export default
-AnalizadorTranslatorImpl;
+export default AnalizadorTranslatorImpl;

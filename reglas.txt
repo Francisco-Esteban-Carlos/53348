@@ -1,0 +1,22 @@
+<programa> ::= { <instrucción> }+
+<instrucción> ::= <decisión>
+<decisión> ::= 'si' <condición> 'entonces' '{' { <sentencia> } '}' ['sino' '{' { <sentencia> } '}']
+<sentencia> ::= { <salida> } | <terminar>
+<salida> ::= 'imprimir' '(' <cadena> ')'
+<terminar> ::= 'salir' ';'
+<condición> ::= 'verdadero' | 'falso'
+<cadena> ::= '"' { <carácter> } '"'
+<carácter> ::= <letra> | <dígito> | <símbolo>
+<letra> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+<dígito> ::= '0' | '1' | ... | '9'
+<símbolo> ::= '.' | ',' | '!' | '?' | ':'
+
+El analizador deberá realizar las siguientes tareas:
+
+Análisis léxico y sintáctico: realizar el análisis léxico y sintáctico sobre el código fuente e informar si la entrada es correcta o contiene errores. En caso de existir errores, indicar la línea en la que ocurren y la causa del problema.
+
+Tabla de lexemas-tokens: Generar una tabla que contenga los lexemas y sus respectivos tokens reconocidos durante el análisis léxico.
+
+Árbol de análisis sintáctico: Construir el árbol de análisis sintáctico concreto de la entrada. Puede representarse en formato de texto.
+
+Interpretación: Traducir el código fuente al lenguaje JavaScript y ejecutarlo como lo haría un intérprete básico.

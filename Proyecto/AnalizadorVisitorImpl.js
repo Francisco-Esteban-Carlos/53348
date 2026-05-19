@@ -28,49 +28,67 @@ class AnalizadorVisitorImpl extends analizadorVisitor{
 
     visitDecision(ctx){
 
-        const condicion=
-            this.visit(
-                ctx.condicion()
-            );
+const condicion=
+this.visit(
+ctx.condicion()
+);
 
 
-        if(condicion){
+// sin sino
+if(!ctx.SINO()){
 
-            let bloque=
-                ctx.sentencia();
+if(condicion){
 
+ctx.sentencia()
+.forEach(
+s=>this.visit(s)
+);
 
-            for(let s of bloque){
+}
 
-                if(this.salir)return;
+return;
 
-                this.visit(s);
-
-            }
-
-        }
-
-        else if(ctx.SINO()){
-
-            let bloque=
-                ctx.sentencia();
+}
 
 
-            if(bloque.length>1){
+// con sino
 
-                for(let s of bloque){
+let mitad=
+Math.floor(
+ctx.sentencia().length/2
+);
 
-                    if(this.salir)return;
 
-                    this.visit(s);
+if(condicion){
 
-                }
+ctx.sentencia()
+.slice(0,mitad)
+.forEach(
+s=>this.visit(s)
+);
 
-            }
+}
+else{
 
-        }
+ctx.sentencia()
+.slice(mitad)
+.forEach(
+s=>this.visit(s)
+);
 
-    }
+}
+
+}
+
+
+
+visitCondicion(ctx){
+
+return ctx.VERDADERO()
+? true
+: false;
+
+}
 
 
 

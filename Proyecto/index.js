@@ -17,6 +17,7 @@ const input = fs.readFileSync('input.txt','utf8');
 const chars = new antlr4.InputStream(input);
 
 
+
 // =====================
 // Lexer y parser
 // =====================
@@ -29,6 +30,28 @@ const parser = new AnalizadorParser(tokens);
 
 parser.buildParseTrees=true;
 
+// =====================
+// Tabla Lexema-Token
+// =====================
+
+tokens.fill();
+
+console.log("\n=================================");
+console.log("TABLA LEXEMA-TOKEN");
+console.log("=================================");
+
+tokens.tokens.forEach(token=>{
+
+if(token.type!==-1){
+
+console.log(
+`${token.text}
+-> ${AnalizadorLexer.symbolicNames[token.type]}`
+);
+
+}
+
+});
 
 // =====================
 // Manejo errores
